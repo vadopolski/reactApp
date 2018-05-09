@@ -10,9 +10,31 @@ class Square extends React.Component {
     }
 }
 
-class Board extends React.Component {
-    renderSquare(i) {
+class Row extends React.Component {
+    square(i) {
         return <Square value={i} />;
+    }
+
+
+    render() {
+        const sections = ["A", "V", 5, true, "F", "ALINa", "X", "y", "Z"];
+
+        return (
+            <div className="board-row">
+                {this.square(sections[0])}
+                {this.square(sections[1])}
+                {this.square(sections[2])}
+            </div>
+        );
+    }
+
+}
+
+
+class Board extends React.Component {
+
+    row(i) {
+        return <Row value={i} />;
     }
 
     render() {
@@ -20,21 +42,7 @@ class Board extends React.Component {
 
         return (
             <div>
-                <div className="board-row">
-                    {this.renderSquare(sections[0])}
-                    {this.renderSquare(sections[1])}
-                    {this.renderSquare(sections[2])}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(sections[3])}
-                    {this.renderSquare(sections[4])}
-                    {this.renderSquare(sections[5])}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(sections[6])}
-                    {this.renderSquare(sections[7])}
-                    {this.renderSquare(sections[8])}
-                </div>
+                {this.row(sections)}
             </div>
         );
     }
