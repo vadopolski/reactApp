@@ -1,48 +1,34 @@
 import React from 'react';
 
-class Square extends React.Component {
-    render() {
-        return (
-            <button className="square">
-                {this.props.value}
-            </button>
-        );
-    }
+function Square(props) {
+    return (
+        <button className="square">
+            {props.value}
+        </button>
+    );
 }
 
-class Row extends React.Component {
-    square(i) {
-        return <Square value={i} />;
-    }
 
 
-    render() {
-        const sections = ["A", "V", 5, true, "F", "ALINa", "X", "y", "Z"];
+function Row(startindex) {
+    const sections = ["A", "V", 5, true, "F", "A", "X", "y", "Z"];
 
-        return (
-            <div className="board-row">
-                {this.square(sections[0])}
-                {this.square(sections[1])}
-                {this.square(sections[2])}
-            </div>
-        );
-    }
+        <div className="board-row">
+            <Square value={sections[1]} />
+            <Square value={sections[startindex + 1]} />
+            <Square value={sections[startindex + 2]} />
+        </div>
+    );
 
 }
-
 
 class Board extends React.Component {
-
-    row(i) {
-        return <Row value={i} />;
-    }
-
     render() {
-        const sections = ["A", "V", 5, true, "F", "ALINa", "X", "y", "Z"];
-
         return (
             <div>
-                {this.row(sections)}
+                <Row startindex={0} />
+                <Row startindex={3} />
+                <Row startindex={6} />
             </div>
         );
     }
