@@ -2,18 +2,23 @@ import React from 'react';
 
 function InputSubmit() {
     return (
-        <label>
-            <input type="Submit" name="name"/>
-        </label>
+        <div>
+            <label>&nbsp;</label>
+            <div>
+                <input type="Submit" name="name"/>
+            </div>
+        </div>
     )
 }
 
 function InputText(props) {
     return (
-        <label>
-            {props.value}
-            <input type="text" name="name"/>
-        </label>
+        <div>
+            <label for={props.name}>{props.value}</label>
+            <div>
+                <input type="text" name={props.name} id={props.name}/>
+            </div>
+        </div>
     )
 }
 
@@ -38,10 +43,14 @@ class MailTo extends React.Component {
     render() {
         return (
             <div onSubmit={this.handleSubmit}>
-                <InputText value="Куда"/>
-                <InputText value="Кому"/>
-                <InputText value="Тема"/>
-                <InputText value="Текст Письма"/>
+                <h2>Письмо посетителя сайта.</h2>
+                <InputText value="Куда" name="where"/>
+                <InputText value="Тема" name="subject"/>
+                <InputText value="Тема" name="body"/>
+                <h2>Координаты для связи.</h2>
+                <InputText value="Фамилия, имя, отчество " name="city"/>
+                <InputText value="Город " name="phone"/>
+                <InputText value="Телефон с кодом города " name="email"/>
                 <InputSubmit/>
             </div>
         );
