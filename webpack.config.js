@@ -1,7 +1,3 @@
-/**
- * Created by Home on 06.05.2018.
- */
-
 var config = {
     entry: './main.js',
     output: {

@@ -11,6 +11,7 @@ function InputSubmit() {
     )
 }
 
+// add mandatory validation and autocomplete
 function InputText(props) {
     return (
         <div>
@@ -25,22 +26,23 @@ function InputText(props) {
 class MailTo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {subjectValue: ''};
-        this.state = {bodyValue: ''};
-        this.state = {subject: 'subject1'};
-        this.state = {body: 'body'};
+        this.state = {subjectValue: '', bodyValue: '', subject: 'subject', body: 'body'};
 
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange1(event) {this.setState({subjectValue: event.target.value});}
+    // dublicate code with id
+    handleChange1(event) {
+        var newState = Object.assign({}, this.state, {subjectValue: event.target.value});
+        this.setState(newState);
+    }
     handleChange2(event) {this.setState({bodyValue: event.target.value});}
 
     handleSubmit(event) {
-        alert('A name, email was submitted: '  + this.state.subjectValue + ' ' + this.state.subject + ' ' +
-            this.state.body + ' ' + this.state.bodyValue);
+        alert('A name, email was submitted: '  + this.state.subjectValue + ' ' +
+            this.state.body +  ' ' + this.state.subject + ' '  + this.state.bodyValue);
         event.preventDefault();
     }
 
@@ -58,23 +60,6 @@ class MailTo extends React.Component {
             </form>
         );
     }
-
-    // render() {
-    //     return (
-    //         <div onSubmit={this.handleSubmit}>
-    //             <h2>Письмо посетителя сайта.</h2>
-    //             <InputText value={this.state.value} onChange={this.handleChange} name="where"/>
-    //             <InputText value={this.state.value} onChange={this.handleChange} name="subject"/>
-    //             <InputText value={this.state.value} onChange={this.handleChange} name="body"/>
-    //             <h2>Координаты для связи.</h2>
-    //             <InputText value={this.state.value} onChange={this.handleChange} name="city"/>
-    //             <InputText value={this.state.value} onChange={this.handleChange} name="phone"/>
-    //             <InputText value={this.state.value} onChange={this.handleChange} name="email"/>
-    //             <InputSubmit/>
-    //         </div>
-    //     );
-    // }
-
 }
 
 export default MailTo;
